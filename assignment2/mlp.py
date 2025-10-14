@@ -8,6 +8,9 @@ class mlp():
             Dense(128, activation='relu'), 
             Dense(1, activation='sigmoid'),  
         ])
+        warmup_steps = 100
+        initial_learning_rate = 0.01
+        decay_steps = 1000
            
     def compile(self):
         self.model.compile(optimizer='adam',
