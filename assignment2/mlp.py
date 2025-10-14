@@ -1,3 +1,4 @@
+import tensorflow as tf
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Dense
 
@@ -11,6 +12,11 @@ class mlp():
         warmup_steps = 100
         initial_learning_rate = 0.01
         decay_steps = 1000
+        
+        lr_schedule = tf.keras.optimizers.schedules.CosineDecay(
+        initial_learning_rate=initial_learning_rate,
+        decay_steps=decay_steps,
+)
            
     def compile(self):
         self.model.compile(optimizer='adam',
