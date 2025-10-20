@@ -4,10 +4,10 @@ from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import Adam
 
 class mlp():
-    def __init__(self):
+    def __init__(self, activation='relu'):
         self.model = Sequential([
-            Dense(256, activation='relu', input_shape=(2,)),  
-            Dense(128, activation='relu'), 
+            Dense(256, activation=activation, input_shape=(2,)),  
+            Dense(128, activation=activation), 
             Dense(1, activation='sigmoid'),  
         ])
         self.warmup_steps = 100
