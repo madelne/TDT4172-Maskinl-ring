@@ -24,18 +24,22 @@ class mlp():
             self.warmup_steps < self.warmup_steps,
             lambda: warmup_lr,
             lambda: self.lr_schedule(self.warmup_steps - self.warmup_steps)
-        )
-           
+        )  
+        
     def compile(self):
         optimizer = Adam(learning_rate=self.lr_schedule)
         self.model.compile(optimizer=optimizer,
               loss='binary_crossentropy',  
               metrics=['accuracy'])
         
-    def fit(self, X, y):
-        self.model.fit(X, y, epochs=100, 
+    def fit(self, X, y, callbacks=None):
+        history = self.model.fit(X, y, epochs=100, 
           batch_size=20, 
-          validation_split=0.2)
+          validation_split=0.2,
+          callbacks=callbacks
+          )
+        return history
           
     def evaluate(self, X, y):
         self.model.evaluate(X, y, verbose=0)
+        
